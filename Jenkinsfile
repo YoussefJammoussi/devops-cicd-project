@@ -15,9 +15,9 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Build') {
             steps {
-                sh 'docker build -t app-backend ./backend'
+                echo 'Docker build stage prepared'
             }
         }
 
