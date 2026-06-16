@@ -2,10 +2,24 @@ pipeline {
     agent any
 
     stages {
-        stage('Test') {
+
+        stage('Checkout') {
             steps {
-                echo 'DevOps CI/CD Project'
+                checkout scm
             }
         }
+
+        stage('Test') {
+            steps {
+                echo 'Testing application'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t app-backend ./backend'
+            }
+        }
+
     }
 }
