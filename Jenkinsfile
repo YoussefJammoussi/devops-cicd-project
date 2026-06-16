@@ -21,5 +21,23 @@ pipeline {
             }
         }
 
+        stage('Deploy') {
+            steps {
+                sh '''
+                ssh -o StrictHostKeyChecking=no youssef@192.168.38.134 "
+                cd ~/production &&
+                sudo docker compose pull &&
+                sudo docker compose up -d
+                "
+                '''
+            }
+        }
+
+        stage('Verify') {
+            steps {
+                sh 'curl -f http://192.168.38.134:5000'
+            }
+        }
+
     }
 }
