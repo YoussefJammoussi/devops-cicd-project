@@ -22,16 +22,18 @@ pipeline {
         }
 
         stage('Deploy') {
-            steps {
-                sh '''
-                ssh -o StrictHostKeyChecking=no youssef@192.168.38.134 "
-                cd ~/production &&
-                sudo docker compose pull &&
-                sudo docker compose up -d
-                "
-                '''
-            }
+    steps {
+        sshagent(['vm2-ssh-key']) {
+            sh '''
+            ssh -o StrictHostKeyChecking=no youssef@192.168.38.134 "
+            cd ~/production &&
+            sudo docker compose pull &&
+            sudo docker compose up -d
+            "
+            '''
         }
+    }
+}
 
         stage('Verify') {
             steps {
