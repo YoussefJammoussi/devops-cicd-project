@@ -23,18 +23,17 @@ pipeline {
 
         stage('Deploy') {
     steps {
-        sshagent(['vm2-ssh-key']) {
-            sh '''
-            ssh -o StrictHostKeyChecking=no youssef@192.168.38.134 "
+        sh '''
+        ssh -o StrictHostKeyChecking=no \
+        -i /var/jenkins_home/.ssh/id_rsa \
+        youssef@192.168.38.134 "
             cd ~/production &&
             docker compose pull &&
             docker compose up -d
-            "
-            '''
-        }
+        "
+        '''
     }
 }
-
         stage('Verify') {
             steps {
                 sh 'curl -f http://192.168.38.134:5000'
