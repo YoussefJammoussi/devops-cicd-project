@@ -27,8 +27,8 @@ pipeline {
             sh '''
             ssh -o StrictHostKeyChecking=no youssef@192.168.38.134 "
             cd ~/production &&
-            sudo docker compose pull &&
-            sudo docker compose up -d
+            docker compose pull &&
+            docker compose up -d
             "
             '''
         }
