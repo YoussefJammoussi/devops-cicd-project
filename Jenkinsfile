@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        DOCKER_IMAGE = "youssef42/app-backend:v1"
+    }
+
     stages {
 
         stage('Checkout') {
@@ -18,8 +22,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh '''
-                cd backend
-                docker build -t youssef42/app-backend:v1 .
+                docker build -t $DOCKER_IMAGE ./backend
                 '''
             }
         }
@@ -27,7 +30,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 sh '''
-                docker push youssef42/app-backend:v1
+                docker push $DOCKER_IMAGE
                 '''
             }
         }
@@ -46,14 +49,12 @@ pipeline {
             }
         }
 
-        stage('Verify Health') {
+        stage('Verify') {
             steps {
                 sh '''
-                sleep 10
                 curl -f http://192.168.38.134:5000/health
                 '''
             }
         }
-
     }
 }
