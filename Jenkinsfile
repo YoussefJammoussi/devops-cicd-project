@@ -15,28 +15,43 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Build Docker Image') {
             steps {
-                echo 'Docker build stage prepared'
+                sh '''
+                cd backend
+                docker build -t youssef42/app-backend:v1 .
+                '''
+            }
+        }
+
+        stage('Push Docker Image') {
+            steps {
+                sh '''
+                docker push youssef42/app-backend:v1
+                '''
             }
         }
 
         stage('Deploy') {
-    steps {
-        sh '''
-        ssh -o StrictHostKeyChecking=no \
-        -i /var/jenkins_home/.ssh/id_rsa \
-        youssef@192.168.38.134 "
-            cd ~/production &&
-            docker compose pull &&
-            docker compose up -d
-        "
-        '''
-    }
-}
-        stage('Verify') {
             steps {
-                sh 'curl -f http://192.168.38.134:5000'
+                sh '''
+                ssh -o StrictHostKeyChecking=no \
+                -i /var/jenkins_home/.ssh/id_rsa \
+                youssef@192.168.38.134 "
+                    cd ~/production &&
+                    docker compose pull &&
+                    docker compose up -d
+                "
+                '''
+            }
+        }
+
+        stage('Verify Health') {
+            steps {
+                sh '''
+                sleep 10
+                curl -f http://192.168.38.134:5000/health
+                '''
             }
         }
 
