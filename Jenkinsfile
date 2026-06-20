@@ -13,8 +13,18 @@ pipeline {
             }
         }
 
-        stage('Test') {
-            steps {
+        stage('SonarQube Analysis') {
+    steps {
+        script {
+            def scannerHome = tool 'SonarScanner'
+            withSonarQubeEnv('SonarQube') {
+                sh "${scannerHome}/bin/sonar-scanner"
+            }
+        }
+    }
+}
+
+        stage('Test') { steps {
                 echo 'Testing application'
             }
         }
