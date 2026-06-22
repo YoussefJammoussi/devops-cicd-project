@@ -1,0 +1,15 @@
+---
+- name: Deploy application
+  hosts: production
+  become: yes
+
+  tasks:
+
+    - name: Pull latest Docker image
+      shell: docker pull youssef42/app-backend:v1
+
+    - name: Restart containers
+      shell: |
+        cd /home/youssef/production
+        docker compose pull
+        docker compose up -d
