@@ -54,18 +54,13 @@ pipeline {
         }
 
         stage('Deploy') {
-            steps {
-                sh '''
-                ssh -o StrictHostKeyChecking=no \
-                -i /var/jenkins_home/.ssh/id_rsa \
-                youssef@192.168.38.134 "
-                    cd ~/production &&
-                    docker compose pull &&
-                    docker compose up -d
-                "
-                '''
-            }
-        }
+    steps {
+        sh '''
+        cd ansible
+        ansible-playbook -i inventory.ini deploy.yml
+        '''
+    }
+}
 
         stage('Verify') {
             steps {
