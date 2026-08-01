@@ -26,41 +26,8 @@ The project simulates a real-world production environment using two Ubuntu virtu
 - **Operating System:** Ubuntu Server 22.04
 
 ## 🔄 Architecture Overview
+![DevOps CI/CD Architecture](docs/screenshots/architecture.png)
 
-```
-                Developer
-                    │
-                Git Push
-                    │
-             GitHub Repository
-                    │
-            GitHub Webhook
-                    │
-              Jenkins (VM1)
-                    │
-        ┌───────────┼───────────┐
-        │           │           │
-     Testing   SonarQube   Docker Build
-        │           │           │
-        └───────────┼───────────┘
-                    │
-          Push Image to Docker Hub
-                    │
-              Ansible Deployment
-                    │
-         Production Server (VM2)
-                    │
-             Docker Compose
-                    │
-        ┌───────────┴───────────┐
-        │                       │
-   Frontend (React)     Backend (Node.js/Express)
-                    │
-        Prometheus + Grafana
-        (Monitoring & Metrics)
-```
-
----
 
 # 🚀 Setup & Usage
 
