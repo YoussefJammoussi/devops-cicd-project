@@ -1,7 +1,13 @@
 # 🚀 DevOps CI/CD Pipeline Project
 
+A production-ready DevOps CI/CD pipeline demonstrating automated build, testing, code quality analysis, deployment, and monitoring using industry-standard tools.
+
+---
+
 ## 📖 Project Overview
-## 📖 About the Project
+
+### About the Project
+
 
 This repository demonstrates a complete DevOps CI/CD pipeline built around a containerized web application. It showcases how modern DevOps practices can automate the entire software delivery lifecycle, from source code integration to production deployment and infrastructure monitoring.
 
@@ -96,17 +102,24 @@ docker compose up -d
 🤖 Ansible Deployment → Jenkins executes an Ansible playbook to connect via SSH to the production server, pull the latest Docker image, and deploy the application automatically using Docker Compose.
 
 ✅ Verify → Check the application health endpoint (/health) after deployment
+
 ![Jenkins Pipeline](docs/screenshots/jenkins-pipeline.png)
 
 📊 Monitoring & Quality
 
 Prometheus → Collects system & app metrics
+
 ![Prometheus Dashboard](docs/screenshots/prometheus-dashboard.png)
+
 Grafana → Dashboards for CPU, RAM, Disk, Network
 ![Grafana Dashboard](docs/screenshots/grafana-dashboard.png)
+
 SonarQube → Code analysis (bugs, vulnerabilities, smells)
+
 ## 🔍 SonarQube Analysis
+
 ![SonarQube Dashboard](docs/screenshots/sonarqube-dashboard.png)
+
 🌱 Future Extensions
 
 • Add Kubernetes deployment manifests to orchestrate containers.
@@ -123,7 +136,7 @@ Developed & maintained by **Youssef Jammoussi**
 
 ## 📂 Project Structure
 
-
+```text
 devops-cicd-project/
 │
 ├── frontend/                      # React application
@@ -156,14 +169,15 @@ devops-cicd-project/
 │       └── node-exporter-dashboard.md
 │
 ├── docs/                          # Project documentation & screenshots
-│   └── screenshots/
-│       ├── architecture.png
-│       ├── devops-server.png
-│       ├── production-server.png
-│       ├── jenkins-pipeline.png
-│       ├── sonarqube-dashboard.png
-│       ├── prometheus-dashboard.png
-│       └── grafana-dashboard.png
+│   ├── screenshots/
+│   │   ├── architecture.png
+│   │   ├── devops-server.png
+│   │   ├── production-server.png
+│   │   ├── jenkins-pipeline.png
+│   │   ├── sonarqube-dashboard.png
+│   │   ├── prometheus-dashboard.png
+│   │   └── grafana-dashboard.png
+│   └── README.md
 │
 ├── .env.example                   # Environment variables template
 ├── .gitignore                     # Git ignored files
