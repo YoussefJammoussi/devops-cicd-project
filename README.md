@@ -112,6 +112,7 @@ Prometheus → Collects system & app metrics
 ![Prometheus Dashboard](docs/screenshots/prometheus-dashboard.png)
 
 Grafana → Dashboards for CPU, RAM, Disk, Network
+
 ![Grafana Dashboard](docs/screenshots/grafana-dashboard.png)
 
 SonarQube → Code analysis (bugs, vulnerabilities, smells)
@@ -272,7 +273,9 @@ http://localhost:5000
 |-----------------------------|----------------------------------|--------------------------------|----------------|
 | **VM1 – DevOps Server**     | CI/CD, Code Analysis, Monitoring | Ubuntu 22.04, 2 vCPU, 4 GB RAM | 192.168.38.133 |
 | **VM2 – Production Server** | Application Deployment           | Ubuntu 22.04, 2 vCPU, 4 GB RAM | 192.168.38.134 |
+
 ![DevOps Server](docs/screenshots/devops-server.png)
+
 ![Production Server](docs/screenshots/production-server.png)
 ## 📜 License
 
